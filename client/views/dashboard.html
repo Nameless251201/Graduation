@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT system</title>
+    <!-- MATERIAL CDN -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+
+    <link rel="icon" href="../public/img/logo.jpg">
+
+    <!-- highCharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- set up socket.io and jquery -->
+    <script src="../public/js/jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="../public//img/logo.jpg" alt="">
+                    <h2>I<span class="primary">oT</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="./statistics">
+                    <span class="material-symbols-outlined">
+                        bar_chart
+                    </span>
+                    <h3>Statistics</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- ************* END OF ASIDE ************* -->
+        <main>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <!-- <input type="date" name="" id=""> -->
+                <p id="date-time">Date</p>
+            </div>
+
+            <div class="insights">
+                <div class="temp">
+                    <span class="material-symbols-outlined">
+                        device_thermostat
+                    </span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Temp</h3>
+                            <h1 class="defaultValue__temp"></h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36" id="circle__temp"></circle>
+                            </svg>
+                            <div class="number">
+                                <p class="value__temp">
+                                    <div class="fa-3x">
+                                        <i class="fa-solid fa-cog fa-spin" style="width: 4rem"></i>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+                <!-- ************* END OF TEMPERATURE ************* -->
+                <div class="humidity">
+                    <span class="material-symbols-outlined">
+                        humidity_mid
+                    </span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Humidity</h3>
+                            <h1 class="defaultValue__humidity"></h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p class="value__humidity">
+                                    <div class="fa-3x">
+                                        <i class="fa-solid fa-cog fa-spin" style="width: 4rem"></i>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+                <!-- ************* END OF HUMIDITY ************* -->
+                <div class="light">
+                    <span class="material-symbols-outlined">
+                        wb_incandescent
+                    </span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Light</h3>
+                            <h1 class="defaultValue__light"></h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p class="value__light">
+                                    <div class="fa-3x">
+                                        <i class="fa-solid fa-cog fa-spin" style="width: 4rem"></i>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted"></small>
+                </div>
+            </div>
+            <!-- ************* END OF INSIGHTS ************* -->
+            <h2>Table</h2>
+            <div class="table">
+                
+                <div class="chart">
+                    <h3>Chart</h3>
+                    <div class="fa-3x">
+                        <i class="fa-solid fa-cog fa-spin" style="width: 4rem"></i>
+                    </div>
+                    <figure class="highcharts-figure">
+                      <div id="container2"></div>
+                    </figure>
+                </div>
+                <div class="led">
+                    <div class="led1">
+                        <span class="material-symbols-outlined" id="span-led-1">
+                            emoji_objects
+                        </span>
+                        <h3>Led 1</h3>
+                        <div class="button">
+                            <input type="checkbox" name="" id="led-1">
+                        </div>
+                    </div>
+                    <div class="led2">
+                        <span class="material-symbols-outlined" id="span-led-2">
+                            emoji_objects
+                        </span>
+                        <h3>Led 2</h3>
+                        <div class="button">
+                            <input type="checkbox" name="" id="led-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ************* END OF TABLE ************* -->
+        </main>
+        <!-- ************* END OF MAIN ************* -->
+        
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">
+                        light_mode
+                    </span>
+                    <span class="material-symbols-outlined">
+                        dark_mode
+                    </span>
+                </div>
+                 <div class="profile">
+                    <div class="info">
+                        <p>Welcome<b></b></p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div class="profile-photo">
+                        <a href="./page/user/userInfo.html">
+                        <img src="../public/img/image.png" alt="" >
+                        </a>
+                    </div>
+                 </div>
+            </div>
+            <!-- ************* END OF TOP ************* -->
+            <div class="devices">
+                <h3>My Devices</h3>
+                <div class="middle">
+                <div class="air">
+                    <span class="material-symbols-outlined">
+                        mode_fan
+                    </span>
+                    <h3>AC</h3>
+                </div>
+                <div class="router">
+                    <span class="material-symbols-outlined">
+                        router
+                    </span>
+                    <h3>Router</h3>
+                </div>
+                <div class="music">
+                    <span class="material-symbols-outlined">
+                        speaker
+                    </span>
+                    <h3>Music</h3>
+                </div>
+                <div class="lamps">
+                    <span class="material-symbols-outlined">
+                        light_group
+                    </span>
+                    <h3>Lamps</h3>
+                </div>
+                </div>
+            </div>
+            <div class="gradient">
+                <div class="search-weather">
+                    <input type="text" placeholder="Enter city name" spellcheck="false">
+                    <button><img src="../public/img/search.png" alt=""></button>
+                </div>
+                <div class="error">
+                    <p>Invalid city name</p>
+                </div>
+                <div class="weather">
+                    <img src="../public/img/rain.png" class="weather-icon">
+                    <h1 class="temp-weather">22°C</h1>
+                    <h2 class="city-weather">New York</h2>
+                    <div class="details">
+                        <div class="col">
+                            <img src="../public/img/humidity.png" alt="">
+                            <div>
+                                <p class="humidity-weather">50%</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img src="../public/img/wind.png" alt="">
+                            <div>
+                                <p class="wind-weather">15 km/h</p>
+                                <p>Wind Speed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="popup1">
+        <div class="popup" id="popup">
+          <div class="top-popup">
+          </div>
+          <div class="middle-popup">
+            <h2>Do you want to turn on led?</h2>
+          </div>
+          <div class="bottom-popup">
+            <button type="button" class="button-popup" id="btn-yes" onclick="confirmLed()">
+              Yes
+            </button>
+            <button type="button" class="button-popup" id="btn-no" onclick="closePopup()">
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    
+    <script src="../public/js/dashboard.js"></script>
+</body>
+</html>

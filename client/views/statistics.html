@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistics</title>
+    <!-- MATERIAL CDN -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="../public/css/statistics.css" />
+    <!-- IconsCount -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <link rel="icon" href="../public/img/logo.jpg" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!--********************** Sidebar **********************-->
+      <div>
+        <aside>
+          <div class="top">
+            <div class="logo">
+              <img src="../public/img/logo.jpg" alt="" />
+              <h2>I<span class="primary">oT</span></h2>
+            </div>
+            <div class="close" id="close-btn">
+              <span class="material-symbols-outlined"> close </span>
+            </div>
+          </div>
+
+          <div class="sidebar">
+            <a href="./dashboard" class="active">
+              <span class="material-symbols-outlined"> dashboard </span>
+              <h3>Dashboard</h3>
+            </a>
+            <a href="#" class="statistics">
+              <span class="material-symbols-outlined"> bar_chart </span>
+              <h3>Statistics</h3>
+            </a>
+          </div>
+        </aside>
+      </div>
+      <!--********************** End of Sidebar **********************-->
+
+      <!--********************** Table **********************-->
+      <div class="data-table">
+        <div class="top-table">
+          <h2>Data Sensors</h2>
+          <div class="search-bar">
+            <div class="icon">
+              <i class="search fa fa-search"></i>
+            </div>
+            <div class="input">
+              <input type="text" placeholder="Search..." id="search" />
+            </div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Place</th>
+              <th>Temperature</th>
+              <th>Humidity</th>
+              <th>Light</th>
+              <th>Location</th>
+              <th>Created at</th>
+            </tr>
+          </thead>
+          <div class="three-body" id="loadingSpinner" style="display: none">
+            <div class="three-body__dot"></div>
+            <div class="three-body__dot"></div>
+            <div class="three-body__dot"></div>
+          </div>
+          <tbody></tbody>
+        </table>
+        <div class="pagination">
+          <button class="arrow" id="prevPage" disabled>
+            ← <span class="nav-text">PREV</span>
+          </button>
+          <div class="pages"></div>
+          <button class="arrow" id="nextPage">
+            <span class="nav-text">NEXT</span> →
+          </button>
+        </div>
+        <!-- <button type="button" class="submit">Show All</button> -->
+      </div>
+
+      <!--********************** End of table **********************-->
+
+      <!--********************** Right **********************-->
+      <div class="top-right">
+        <button id="menu-btn">
+          <span class="material-symbols-outlined"> menu </span>
+        </button>
+        <div class="theme-toggler">
+          <span class="material-symbols-outlined active"> light_mode </span>
+          <span class="material-symbols-outlined"> dark_mode </span>
+        </div>
+        <div class="profile">
+          <div class="info">
+            <p>Welcome<b></b></p>
+            <small class="text-muted"></small>
+          </div>
+          <div class="profile-photo">
+            <a href="#">
+              <img src="../public/img/image.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--********************** End of Right **********************-->
+    </div>
+
+    <div class="overlay" id="popup1">
+      <div class="popup" id="popup">
+        <div class="top-popup">
+          <h2>Edit Form</h2>
+        </div>
+        <div class="middle-popup">
+          <div class="edit-place">
+            <label for="place">Place: </label>
+            <input type="text" placeholder="Place" id="name-data" />
+          </div>
+          <div class="edit-location">
+            <label for="location">Location: </label>
+            <input type="text" placeholder="Location" id="location-data" />
+          </div>
+        </div>
+        <div class="bottom-popup">
+          <button type="button" class="button-popup" onclick="updateData()">
+            Update
+          </button>
+          <button type="button" class="button-popup" onclick="closePopup()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../public/js/statistics.js"></script>
+  </body>
+</html>
